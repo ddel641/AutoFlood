@@ -1,4 +1,4 @@
-MultiFlood (Based on MultiFlood by LenweSaralonde)
+MultiFlood (Based on AutoFlood by LenweSaralonde)
 =========
 MultiFlood periodically sends single-line message in a chat channel. It's designed for advertisement for guild recruitment, crafting, in-game events...
 

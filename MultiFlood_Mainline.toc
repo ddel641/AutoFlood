@@ -1,7 +1,7 @@
 ## Interface: 100005
 ## Title: MultiFlood
-## Author: ddel641
-## Version: 0.1
+## Author: dLenweSaralonde & ddel641
+## Version: 0.1.1
 ## Notes: Sends a periodical message in a channel using MessageQueue
 ## RequiredDeps: MessageQueue
 ## SavedVariablesPerCharacter: AF_characterConfig
