@@ -1,6 +1,7 @@
 --[[
 	AutoFlood
 	Author : LenweSaralonde
+	edits for multiple messages: ddel641
 ]]
 
 -- ===========================================
@@ -13,14 +14,15 @@ local isFloodActive = false
 --- Main script initialization
 --
 function AutoFlood_OnLoad()
-	AutoFlood_Frame:RegisterEvent("VARIABLES_LOADED")
-	AutoFlood_Frame.timeSinceLastUpdate = 0
-	AutoFlood_Frame:SetScript("OnEvent", AutoFlood_OnEvent)
-	AutoFlood_Frame:SetScript("OnUpdate", AutoFlood_OnUpdate)
+	AutoFlood_Frame:RegisterEvent("VARIABLES_LOADED") -- Shows that the variables have loaded
+	AutoFlood_Frame.timeSinceLastUpdate = 0 -- Sets the timer to 0
+	AutoFlood_Frame:SetScript("OnEvent", AutoFlood_OnEvent) -- Calls AutoFlood_OnEvent when an event happens. 
+	AutoFlood_Frame:SetScript("OnUpdate", AutoFlood_OnUpdate) -- when an update happens call AutoFlood_OnUpdate
 end
 
 --- Clean the old account-wide config table
 -- @param characterId (string)
+---- This is old stuff that allows for the change from an older version. 
 local function cleanOldConfig(characterId)
 	if AF_config and AF_config[characterId] then
 		AF_config[characterId] = nil
@@ -32,18 +34,21 @@ end
 
 --- Event handler function
 --
+---- This is runs when an event is recognized by the UI
 function AutoFlood_OnEvent(self, event)
 	-- Init saved variables
 	if event == "VARIABLES_LOADED" then
 
 		-- Add-on version
-		local version = GetAddOnMetadata("AutoFlood", "Version")
+		local version = GetAddOnMetadata("AutoFlood", "Version") -- gets the addon version
 
 		-- Config key used for the old account-wide configuration table
+		-- Deprecated
 		local characterId = GetRealmName() .. '-' .. UnitName("player")
 		local oldConfig = AF_config and AF_config[characterId] or {}
 
 		-- Init configuration
+		---- Sets initial Values for the character
 		AF_characterConfig = Mixin({
 			message = "AutoFlood " .. version,
 			channel = "say",
@@ -72,7 +77,7 @@ end
 --- Stop flood
 --
 function AutoFlood_Off()
-	DEFAULT_CHAT_FRAME:AddMessage(AUTOFLOOD_INACTIVE, 1, 1, 1)
+	DEFAULT_CHAT_FRAME:AddMessage(AUTOFLOOD_INACTIVE, 1, 0, 0)
 	isFloodActive = false
 end
 
@@ -97,7 +102,7 @@ end
 --
 function AutoFlood_Info()
 	if isFloodActive then
-		DEFAULT_CHAT_FRAME:AddMessage(AUTOFLOOD_ACTIVE, 1, 1, 1)
+		DEFAULT_CHAT_FRAME:AddMessage(AUTOFLOOD_ACTIVE, 0, 1, 0)
 	else
 		DEFAULT_CHAT_FRAME:AddMessage(AUTOFLOOD_INACTIVE, 1, 1, 1)
 	end

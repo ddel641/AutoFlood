@@ -1,5 +1,10 @@
 Changelog
 =========
+v1.4.4
+------
+* Add some comments
+* Change Color for AutoFlood enable and disable
+
 
 v1.4.3
 ------
