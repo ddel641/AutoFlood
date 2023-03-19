@@ -15,7 +15,7 @@ ignore = {
 
 globals = {
 	-- Saved variables
-	"AF_characterConfig",
+	"MF_characterConfig",
 
 	-- Globals
 	"SLASH_MULTIFLOOD1",
