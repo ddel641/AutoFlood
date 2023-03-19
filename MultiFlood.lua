@@ -144,7 +144,7 @@ end
 --- Set the event / system / channel type according fo the game channel /channel.
 -- @param channel (string) Channel name, as prefixed by the slash.
 function MultiFlood_SetChannel(channel)
-	local system, _, channelName = MULTIFLOOD_GetChannel(channel)
+	local system, _, channelName = MultiFlood_GetChannel(channel)
 	if system == nil then
 		-- Bad channel
 		local s = string.gsub(MULTIFLOOD_ERR_CHAN, "CHANNEL", channel)
@@ -178,19 +178,19 @@ SlashCmdList["MultiFlood"] = function(s)
 	end
 end
 
--- /floodmessage <message>
+-- /mfloodmessage <message>
 -- Set the message to send
 SlashCmdList["MULTIFLOODSETMESSAGE"] = MultiFlood_SetMessage
 
--- /floodchan <channel>
+-- /mfloodchan <channel>
 -- Set the channel
 SlashCmdList["MULTIFLOODSETCHANNEL"] = MultiFlood_SetChannel
 
--- /floodrate <duration>
+-- /mfloodrate <duration>
 -- Set the period (in seconds)
 SlashCmdList["MULTIFLOODSETRATE"] = MultiFlood_SetRate
 
--- /floodinfo
+-- /mfloodinfo
 -- Display the parameters in chat window
 SlashCmdList["MULTIFLOODINFO"] = MultiFlood_Info
 
