@@ -33,7 +33,7 @@ function MultiFlood_OnEvent(self, event)
 		-- Init configuration
 		---- Sets initial Values for the character
 		MF_characterConfig = Mixin({
-			message = "MultiFlood " .. version,
+			message = {"MultiFlood " .. version},
 			channel = "say",
 			rate = 60,
 		}, MF_characterConfig or {})
@@ -70,7 +70,7 @@ function MultiFlood_OnUpdate(self, elapsed)
 			local s = string.gsub("[MultiFlood] " .. MULTIFLOOD_ERR_CHAN, "CHANNEL", MF_characterConfig.channel)
 			DEFAULT_CHAT_FRAME:AddMessage(s, 1, 0, 0)
 		else
-			MessageQueue.SendChatMessage(MF_characterConfig.message, system, nil, channelNumber)
+			MessageQueue.SendChatMessage(MF_characterConfig.message[1], system, nil, channelNumber)
 		end
 		MultiFlood_Frame.timeSinceLastUpdate = 0
 	end
@@ -96,9 +96,9 @@ end
 -- @param msg (string)
 function MultiFlood_SetMessage(index, msg)
 	if msg ~= "" then
-		MF_characterConfig.message = msg
+		MF_characterConfig.message[1] = msg
 	end
-	local s = string.gsub(MULTIFLOOD_MESSAGE, "MESSAGE", MF_characterConfig.message)
+	local s = string.gsub(MULTIFLOOD_MESSAGE, "MESSAGE", MF_characterConfig.message[1])
 	DEFAULT_CHAT_FRAME:AddMessage(s, 1, 1, 1)
 end
 

@@ -15,7 +15,6 @@ ignore = {
 
 globals = {
 	-- Saved variables
-	"AF_config", -- deprecated
 	"AF_characterConfig",
 
 	-- Globals
