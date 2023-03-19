@@ -2,21 +2,21 @@
 -- Last Update : 22/05/2006
 
 if (GetLocale() == "frFR") then
-	AUTOFLOOD_LOAD = "AutoFlood VERSION chargé. Tapez /floodhelp pour obtenir de l'aide."
+	MULTIFLOOD_LOAD = "MultiFlood VERSION chargé. Tapez /floodhelp pour obtenir de l'aide."
 
-	AUTOFLOOD_STATS = "\"MESSAGE\" est envoyé toutes les RATE secondes dans le canal /CHANNEL."
+	MULTIFLOOD_STATS = "\"MESSAGE\" est envoyé toutes les RATE secondes dans le canal /CHANNEL."
 
-	AUTOFLOOD_MESSAGE = "Le message est maintenant \"MESSAGE\"."
-	AUTOFLOOD_RATE = "Le message est envoyé toutes les RATE secondes."
-	AUTOFLOOD_CHANNEL = "Le message est envoyé dans le canal /CHANNEL."
+	MULTIFLOOD_MESSAGE = "Le message est maintenant \"MESSAGE\"."
+	MULTIFLOOD_RATE = "Le message est envoyé toutes les RATE secondes."
+	MULTIFLOOD_CHANNEL = "Le message est envoyé dans le canal /CHANNEL."
 
-	AUTOFLOOD_ACTIVE = "AutoFlood est activé."
-	AUTOFLOOD_INACTIVE = "AutoFlood est désactivé."
+	MULTIFLOOD_ACTIVE = "MultiFlood est activé."
+	MULTIFLOOD_INACTIVE = "MultiFlood est désactivé."
 
-	AUTOFLOOD_ERR_CHAN = "Le canal /CHANNEL est invalide."
-	AUTOFLOOD_ERR_RATE = "Vous ne pouvez pas envoyer de messages à moins de RATE secondes d'intervalle."
+	MULTIFLOOD_ERR_CHAN = "Le canal /CHANNEL est invalide."
+	MULTIFLOOD_ERR_RATE = "Vous ne pouvez pas envoyer de messages à moins de RATE secondes d'intervalle."
 
-	AUTOFLOOD_HELP = {
+	MULTIFLOOD_HELP = {
 		"===================== Auto Flood =====================",
 		"/flood [on|off] : Démarre / arrête l'envoi du message.",
 		"/floodmsg <message> : Définit le message à envoyer.",

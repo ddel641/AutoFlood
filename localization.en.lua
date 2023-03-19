@@ -2,21 +2,21 @@
 -- Last Update : 22/05/2006
 
 
-AUTOFLOOD_LOAD = "AutoFlood VERSION loaded. Type /floodhelp for help."
+MULTIFLOOD_LOAD = "MultiFlood VERSION loaded. Type /floodhelp for help."
 
-AUTOFLOOD_STATS = "\"MESSAGE\" is sent every RATE seconds in channel /CHANNEL."
+MULTIFLOOD_STATS = "\"MESSAGE\" is sent every RATE seconds in channel /CHANNEL."
 
-AUTOFLOOD_MESSAGE = "The message is now \"MESSAGE\"."
-AUTOFLOOD_RATE = "The message is now sent every RATE seconds."
-AUTOFLOOD_CHANNEL = "The message is now sent in channel /CHANNEL."
+MULTIFLOOD_MESSAGE = "The message is now \"MESSAGE\"."
+MULTIFLOOD_RATE = "The message is now sent every RATE seconds."
+MULTIFLOOD_CHANNEL = "The message is now sent in channel /CHANNEL."
 
-AUTOFLOOD_ACTIVE = "AutoFlood is enabled."
-AUTOFLOOD_INACTIVE = "AutoFlood is disabled."
+MULTIFLOOD_ACTIVE = "MultiFlood is enabled."
+MULTIFLOOD_INACTIVE = "MultiFlood is disabled."
 
-AUTOFLOOD_ERR_CHAN = "The channel /CHANNEL doesn't exist."
-AUTOFLOOD_ERR_RATE = "You can't send messages less than every RATE seconds."
+MULTIFLOOD_ERR_CHAN = "The channel /CHANNEL doesn't exist."
+MULTIFLOOD_ERR_RATE = "You can't send messages less than every RATE seconds."
 
-AUTOFLOOD_HELP = {
+MULTIFLOOD_HELP = {
 	"===================== Auto Flood =====================",
 	"/flood [on|off] : Start / stops sending the message.",
 	"/floodmsg <message> : Sets the message.",

@@ -6,8 +6,8 @@ exclude_files = {
 ignore = {
 	-- Ignore global writes/accesses/mutations on anything prefixed with the add-on name.
 	-- This is the standard prefix for all of our global frame names and mixins.
-	"11./^AutoFlood", -- Main functions
-	"11./^AUTOFLOOD_", -- Localization strings
+	"11./^MultiFlood", -- Main functions
+	"11./^MULTIFLOOD_", -- Localization strings
 
 	-- Ignore unused self. This would popup for Mixins and Objects
 	"212/self",
@@ -19,16 +19,16 @@ globals = {
 	"AF_characterConfig",
 
 	-- Globals
-	"SLASH_AUTOFLOOD1",
-	"SLASH_AUTOFLOODSETMESSAGE1",
-	"SLASH_AUTOFLOODSETMESSAGE2",
-	"SLASH_AUTOFLOODSETCHANNEL1",
-	"SLASH_AUTOFLOODSETCHANNEL2",
-	"SLASH_AUTOFLOODSETRATE1",
-	"SLASH_AUTOFLOODINFO1",
-	"SLASH_AUTOFLOODINFO2",
-	"SLASH_AUTOFLOODHELP1",
-	"SLASH_AUTOFLOODHELP2",
+	"SLASH_MULTIFLOOD1",
+	"SLASH_MULTIFLOODSETMESSAGE1",
+	"SLASH_MULTIFLOODSETMESSAGE2",
+	"SLASH_MULTIFLOODSETCHANNEL1",
+	"SLASH_MULTIFLOODSETCHANNEL2",
+	"SLASH_MULTIFLOODSETRATE1",
+	"SLASH_MULTIFLOODINFO1",
+	"SLASH_MULTIFLOODINFO2",
+	"SLASH_MULTIFLOODHELP1",
+	"SLASH_MULTIFLOODHELP2",
 
 	-- AddOn Overrides
 }
