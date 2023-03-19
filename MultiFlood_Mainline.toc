@@ -4,5 +4,5 @@
 ## Version: 0.1.1
 ## Notes: Sends a periodical message in a channel using MessageQueue
 ## RequiredDeps: MessageQueue
-## SavedVariablesPerCharacter: AF_characterConfig
+## SavedVariablesPerCharacter: MF_characterConfig
 MultiFlood.xml

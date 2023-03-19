@@ -30,13 +30,16 @@ function MultiFlood_OnEvent(self, event)
 		-- Add-on version
 		local version = GetAddOnMetadata("MultiFlood", "Version") -- gets the addon version
 
+		
 		-- Init configuration
-		---- Sets initial Values for the character
-		MF_characterConfig = Mixin({
-			message = {"MultiFlood " .. version},
-			channel = "say",
-			rate = 60,
-		}, MF_characterConfig or {})
+		-- if MF_characterConfig does not exist, create it
+		if not MF_characterConfig then
+			MF_characterConfig = Mixin({
+				message = {"MultiFlood " .. version},
+				channel = "say",
+				rate = 60,
+			}, MF_characterConfig or {})
+		end
 
 		-- Display welcome message
 		local s = string.gsub(MULTIFLOOD_LOAD, "VERSION", version)
@@ -86,7 +89,7 @@ function MultiFlood_Info()
 	end
 
 	local s = MULTIFLOOD_STATS
-	s = string.gsub(s, "MESSAGE", MF_characterConfig.message)
+	s = string.gsub(s, "MESSAGE", MF_characterConfig.message[1])
 	s = string.gsub(s, "CHANNEL", MF_characterConfig.channel)
 	s = string.gsub(s, "RATE", MF_characterConfig.rate)
 	DEFAULT_CHAT_FRAME:AddMessage(s, 1, 1, 1)
@@ -164,7 +167,7 @@ end
 --- /flood [on|off]
 -- Start / stop flood
 -- @param s (string)
-SlashCmdList["MultiFlood"] = function(s)
+SlashCmdList["MULTIFLOOD"] = function(s)
 	if s == "on" then
 		MultiFlood_On()
 	elseif s == "off" then
@@ -196,7 +199,7 @@ SlashCmdList["MULTIFLOODINFO"] = MultiFlood_Info
 
 -- /floodhelp
 -- Display help in chat window
-SlashCmdList["MultiFloodHELP"] = function()
+SlashCmdList["MULTIFLOODHELP"] = function()
 	for _, l in pairs(MULTIFLOOD_HELP) do
 		DEFAULT_CHAT_FRAME:AddMessage(l, 1, 1, 1)
 	end
