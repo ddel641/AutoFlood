@@ -18,11 +18,11 @@ if (GetLocale() == "frFR") then
 
 	MULTIFLOOD_HELP = {
 		"===================== Auto Flood =====================",
-		"/flood [on|off] : Démarre / arrête l'envoi du message.",
-		"/floodmsg <message> : Définit le message à envoyer.",
-		"/floodchan <canal> : Définit le canal à utiliser pour l'envoi.",
-		"/floodrate <durée> : Définit la période (en secondes) d'envoi du message.",
-		"/floodinfo : Affiche les paramètres.",
-		"/floodhelp : Affiche ce message d'aide.",
+		"/mflood [on|off] : Démarre / arrête l'envoi du message.",
+		"/mfloodmsg <message> : Définit le message à envoyer.",
+		"/mfloodchan <canal> : Définit le canal à utiliser pour l'envoi.",
+		"/mfloodrate <durée> : Définit la période (en secondes) d'envoi du message.",
+		"/mfloodinfo : Affiche les paramètres.",
+		"/mfloodhelp : Affiche ce message d'aide.",
 	}
 end

@@ -32,11 +32,11 @@ function MultiFlood_OnEvent(self, event)
 
 		-- Init configuration
 		---- Sets initial Values for the character
-		AF_characterConfig = Mixin({
+		MF_characterConfig = Mixin({
 			message = "MultiFlood " .. version,
 			channel = "say",
 			rate = 60,
-		}, AF_characterConfig or {})
+		}, MF_characterConfig or {})
 
 		-- Display welcome message
 		local s = string.gsub(MULTIFLOOD_LOAD, "VERSION", version)
@@ -49,7 +49,7 @@ end
 function MultiFlood_On()
 	isFloodActive = true
 	MultiFlood_Info()
-	MultiFlood_Frame.timeSinceLastUpdate = AF_characterConfig.rate
+	MultiFlood_Frame.timeSinceLastUpdate = MF_characterConfig.rate
 end
 
 --- Stop flood
@@ -64,13 +64,13 @@ end
 function MultiFlood_OnUpdate(self, elapsed)
 	if not isFloodActive or MessageQueue.GetNumPendingMessages() > 0 then return end
 	MultiFlood_Frame.timeSinceLastUpdate = MultiFlood_Frame.timeSinceLastUpdate + elapsed
-	if MultiFlood_Frame.timeSinceLastUpdate > AF_characterConfig.rate then
-		local system, channelNumber = MultiFlood_GetChannel(AF_characterConfig.channel)
+	if MultiFlood_Frame.timeSinceLastUpdate > MF_characterConfig.rate then
+		local system, channelNumber = MultiFlood_GetChannel(MF_characterConfig.channel)
 		if system == nil then
-			local s = string.gsub("[MultiFlood] " .. MULTIFLOOD_ERR_CHAN, "CHANNEL", AF_characterConfig.channel)
+			local s = string.gsub("[MultiFlood] " .. MULTIFLOOD_ERR_CHAN, "CHANNEL", MF_characterConfig.channel)
 			DEFAULT_CHAT_FRAME:AddMessage(s, 1, 0, 0)
 		else
-			MessageQueue.SendChatMessage(AF_characterConfig.message, system, nil, channelNumber)
+			MessageQueue.SendChatMessage(MF_characterConfig.message, system, nil, channelNumber)
 		end
 		MultiFlood_Frame.timeSinceLastUpdate = 0
 	end
@@ -80,15 +80,15 @@ end
 --
 function MultiFlood_Info()
 	if isFloodActive then
-		DEFAULT_CHAT_FRAME:AddMessage(MultiFlood_ACTIVE, 0, 1, 0)
+		DEFAULT_CHAT_FRAME:AddMessage(MULTIFLOOD_ACTIVE, 0, 1, 0)
 	else
-		DEFAULT_CHAT_FRAME:AddMessage(MultiFlood_INACTIVE, 1, 1, 1)
+		DEFAULT_CHAT_FRAME:AddMessage(MULTIFLOOD_INACTIVE, 1, 1, 1)
 	end
 
 	local s = MULTIFLOOD_STATS
-	s = string.gsub(s, "MESSAGE", AF_characterConfig.message)
-	s = string.gsub(s, "CHANNEL", AF_characterConfig.channel)
-	s = string.gsub(s, "RATE", AF_characterConfig.rate)
+	s = string.gsub(s, "MESSAGE", MF_characterConfig.message)
+	s = string.gsub(s, "CHANNEL", MF_characterConfig.channel)
+	s = string.gsub(s, "RATE", MF_characterConfig.rate)
 	DEFAULT_CHAT_FRAME:AddMessage(s, 1, 1, 1)
 end
 
@@ -96,9 +96,9 @@ end
 -- @param msg (string)
 function MultiFlood_SetMessage(index, msg)
 	if msg ~= "" then
-		AF_characterConfig.message = msg
+		MF_characterConfig.message = msg
 	end
-	local s = string.gsub(MULTIFLOOD_MESSAGE, "MESSAGE", AF_characterConfig.message)
+	local s = string.gsub(MULTIFLOOD_MESSAGE, "MESSAGE", MF_characterConfig.message)
 	DEFAULT_CHAT_FRAME:AddMessage(s, 1, 1, 1)
 end
 
@@ -107,8 +107,8 @@ end
 function MultiFlood_SetRate(rate)
 	if rate ~= nil and tonumber(rate) > 0 and rate ~= "" then rate = tonumber(rate) end
 	if rate >= MAX_RATE then
-		AF_characterConfig.rate = rate
-		local s = string.gsub(MULTIFLOOD_RATE, "RATE", AF_characterConfig.rate)
+		MF_characterConfig.rate = rate
+		local s = string.gsub(MULTIFLOOD_RATE, "RATE", MF_characterConfig.rate)
 		DEFAULT_CHAT_FRAME:AddMessage(s, 1, 1, 1)
 	else
 		local s = string.gsub(MULTIFLOOD_ERR_RATE, "RATE", MAX_RATE)
@@ -151,7 +151,7 @@ function MultiFlood_SetChannel(channel)
 		DEFAULT_CHAT_FRAME:AddMessage(s, 1, 0, 0)
 	else
 		-- Save channel setting
-		AF_characterConfig.channel = channelName
+		MF_characterConfig.channel = channelName
 		local s = string.gsub(MULTIFLOOD_CHANNEL, "CHANNEL", channelName)
 		DEFAULT_CHAT_FRAME:AddMessage(s, 1, 1, 1)
 	end
