@@ -30,13 +30,16 @@ function MultiFlood_OnEvent(self, event)
 		-- Add-on version
 		local version = GetAddOnMetadata("MultiFlood", "Version") -- gets the addon version
 
+		
 		-- Init configuration
-		---- Sets initial Values for the character
-		MF_characterConfig = Mixin({
-			message = "MultiFlood " .. version,
-			channel = "say",
-			rate = 60,
-		}, MF_characterConfig or {})
+		-- if MF_characterConfig does not exist, create it
+		if not MF_characterConfig then
+			MF_characterConfig = Mixin({
+				message = {"MultiFlood " .. version},
+				channel = "say",
+				rate = 60,
+			}, MF_characterConfig or {})
+		end
 
 		-- Display welcome message
 		local s = string.gsub(MULTIFLOOD_LOAD, "VERSION", version)
@@ -70,7 +73,7 @@ function MultiFlood_OnUpdate(self, elapsed)
 			local s = string.gsub("[MultiFlood] " .. MULTIFLOOD_ERR_CHAN, "CHANNEL", MF_characterConfig.channel)
 			DEFAULT_CHAT_FRAME:AddMessage(s, 1, 0, 0)
 		else
-			MessageQueue.SendChatMessage(MF_characterConfig.message, system, nil, channelNumber)
+			MessageQueue.SendChatMessage(MF_characterConfig.message[1], system, nil, channelNumber)
 		end
 		MultiFlood_Frame.timeSinceLastUpdate = 0
 	end
@@ -86,7 +89,7 @@ function MultiFlood_Info()
 	end
 
 	local s = MULTIFLOOD_STATS
-	s = string.gsub(s, "MESSAGE", MF_characterConfig.message)
+	s = string.gsub(s, "MESSAGE", MF_characterConfig.message[1])
 	s = string.gsub(s, "CHANNEL", MF_characterConfig.channel)
 	s = string.gsub(s, "RATE", MF_characterConfig.rate)
 	DEFAULT_CHAT_FRAME:AddMessage(s, 1, 1, 1)
@@ -96,9 +99,9 @@ end
 -- @param msg (string)
 function MultiFlood_SetMessage(index, msg)
 	if msg ~= "" then
-		MF_characterConfig.message = msg
+		MF_characterConfig.message[1] = msg
 	end
-	local s = string.gsub(MULTIFLOOD_MESSAGE, "MESSAGE", MF_characterConfig.message)
+	local s = string.gsub(MULTIFLOOD_MESSAGE, "MESSAGE", MF_characterConfig.message[1])
 	DEFAULT_CHAT_FRAME:AddMessage(s, 1, 1, 1)
 end
 
@@ -144,7 +147,7 @@ end
 --- Set the event / system / channel type according fo the game channel /channel.
 -- @param channel (string) Channel name, as prefixed by the slash.
 function MultiFlood_SetChannel(channel)
-	local system, _, channelName = MULTIFLOOD_GetChannel(channel)
+	local system, _, channelName = MultiFlood_GetChannel(channel)
 	if system == nil then
 		-- Bad channel
 		local s = string.gsub(MULTIFLOOD_ERR_CHAN, "CHANNEL", channel)
@@ -164,7 +167,7 @@ end
 --- /flood [on|off]
 -- Start / stop flood
 -- @param s (string)
-SlashCmdList["MultiFlood"] = function(s)
+SlashCmdList["MULTIFLOOD"] = function(s)
 	if s == "on" then
 		MultiFlood_On()
 	elseif s == "off" then
@@ -178,25 +181,25 @@ SlashCmdList["MultiFlood"] = function(s)
 	end
 end
 
--- /floodmessage <message>
+-- /mfloodmessage <message>
 -- Set the message to send
 SlashCmdList["MULTIFLOODSETMESSAGE"] = MultiFlood_SetMessage
 
--- /floodchan <channel>
+-- /mfloodchan <channel>
 -- Set the channel
 SlashCmdList["MULTIFLOODSETCHANNEL"] = MultiFlood_SetChannel
 
--- /floodrate <duration>
+-- /mfloodrate <duration>
 -- Set the period (in seconds)
 SlashCmdList["MULTIFLOODSETRATE"] = MultiFlood_SetRate
 
--- /floodinfo
+-- /mfloodinfo
 -- Display the parameters in chat window
 SlashCmdList["MULTIFLOODINFO"] = MultiFlood_Info
 
 -- /floodhelp
 -- Display help in chat window
-SlashCmdList["MultiFloodHELP"] = function()
+SlashCmdList["MULTIFLOODHELP"] = function()
 	for _, l in pairs(MULTIFLOOD_HELP) do
 		DEFAULT_CHAT_FRAME:AddMessage(l, 1, 1, 1)
 	end
